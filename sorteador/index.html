@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio Sebrae Previdência</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="jpg">
+</head>
+<body>
+    <div class="imagem">
+        <img src="img/logo_12821 (1).png" alt="logo sebrae">
+    </div>
+    <h1>Sorteio Sebrae Previdência</h1>
+    <div class="container">
+        <!-- Lista de nomes adicionados -->
+        <div id="nomesAdicionados">
+            <h2>Nomes Adicionados</h2>
+            <ul id="listaNomes"></ul>
+        </div>
+
+        <!-- Mensagem de confirmação -->
+        <p id="mensagem"></p>
+
+        <!-- Botões para sortear e reiniciar -->
+        <div>
+            <button onclick="sortearNome()">Sortear Nome</button>
+            <button onclick="reiniciarSorteio()">Reiniciar Sorteio</button>
+        </div>
+
+        <!-- Sobreposição de tela de carregamento -->
+        <div id="loaderOverlay" class="overlay">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <script>
+        // Array para armazenar os nomes
+        let nomes = [];
+        let nomePessoa = '';
+
+        // Array para registrar nomes já sorteados
+        let nomesSorteados = [];
+
+        // Função para carregar nomes do arquivo de texto
+        async function carregarNomes() {
+            try {
+                const response = await fetch('nomes.txt');
+                if (!response.ok) {
+                    throw new Error('Não foi possível carregar os nomes.');
+                }
+                const text = await response.text();
+                nomes = text.split('\n').filter(nome => nome.trim() !== ''); // Divide o texto por quebras de linha e remove linhas em branco
+                exibirMensagem('🎲Sorteio Pronto🎲.');
+            } catch (error) {
+                exibirMensagem('Erro ao carregar nomes: ' + error.message);
+            }
+        }
+
+        // Chame a função de carregamento de nomes ao iniciar a página
+        carregarNomes();
+
+        // Função para sortear um nome aleatório
+        function sortearNome() {
+            if (nomes.length === 0) {
+                exibirMensagem('Nenhum nome para sortear.');
+            } else {
+                exibirLoader();
+                setTimeout(() => {
+                    if (nomesSorteados.length === nomes.length) {
+                        exibirMensagem('Todos os nomes já foram sorteados. Clique em "Reiniciar Sorteio" para sortear novamente.');
+                        ocultarLoader();
+                        return;
+                    }
+
+                    let nomeSorteado;
+                    do {
+                        const indiceSorteado = Math.floor(Math.random() * nomes.length);
+                        nomeSorteado = nomes[indiceSorteado];
+                    } while (nomesSorteados.includes(nomeSorteado)); // Verifica se o nome já foi sorteado
+
+                    nomesSorteados.push(nomeSorteado); // Adiciona o nome sorteado à lista de sorteados
+                    nomePessoa = nomeSorteado;
+                    exibirMensagem(`🎉O nome sorteado é: ${nomePessoa}🎉`);
+                    ocultarLoader();
+                }, 2000); // Simula um atraso de 2 segundos para o sorteio
+            }
+        }
+
+        // Função para exibir uma mensagem
+        function exibirMensagem(mensagem) {
+            const mensagemElement = document.getElementById('mensagem');
+            mensagemElement.textContent = mensagem;
+        }
+
+        // Função para exibir o loader
+        function exibirLoader() {
+            const loaderOverlay = document.getElementById('loaderOverlay');
+            loaderOverlay.style.display = 'flex';
+        }
+
+        // Função para ocultar o loader
+        function ocultarLoader() {
+            const loaderOverlay = document.getElementById('loaderOverlay');
+            loaderOverlay.style.display = 'none';
+        }
+
+        // Função para reiniciar o sorteio
+        function reiniciarSorteio() {
+            nomePessoa = '';
+            nomesSorteados = []; // Limpa a lista de nomes sorteados
+            exibirMensagem('🎲Sorteio Pronto🎲.');
+        }
+    </script>
+</body>
+</html>

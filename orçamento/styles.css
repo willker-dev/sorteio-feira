@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    background: linear-gradient(to bottom, #fff, #f558ed);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 90%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+input[type="number"], button, #category-selector {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+input[type="number"]:focus, button:focus, #category-selector:focus {
+    outline: none;
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+button:hover, #category-selector:hover {
+    cursor: pointer;
+}
+
+button:active, #category-selector:active {
+    transform: translateY(2px);
+}
+
+/* Aumente o tamanho do botão "Reiniciar" */
+#reset-button {
+    width: 50%;
+    margin-left: 30%;
+}
+
+/* Adicione mais estilos conforme necessário */
+#budget-workshop h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+}
+
+.imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.imagem img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 15%;
+}
+
+/* Estilos para o seletor de categoria */
+#category-selector {
+    margin: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#category-selector:focus {
+    outline: none;
+}
+
+/* Estilize a seta no seletor */
+#category-selector::after {
+    content: '\25BC';
+    margin-left: 5px;
+}
+
+.hidden {
+    display: none;
+}

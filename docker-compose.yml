@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  webserver:
+    build: .docker
+    ports:
+      - "81:80"
+    volumes:
+      - "./:/var/www/html"

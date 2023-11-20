@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    background: linear-gradient(to bottom, #fff, #f558ed);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+h1 {
+    margin-top: 80px;
+    text-align: center;
+    color: rgb(110, 36, 139);
+    text-shadow: #000;
+    font-size: 3rem;
+}
+
+.container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-container {
+    margin-bottom: 10px;
+}
+
+.input-container input {
+    width: 100%; /* Tornando o campo de entrada de largura total */
+    padding: 5px;
+}
+
+#nomesAdicionados {
+    margin-top: 20px;
+    display: none;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button {
+    background-color: #f272fd;
+    color: #000000;
+    padding: 15px 30px; /* Reduzindo o tamanho do botão para telas menores */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #7835a5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.9rem;
+}
+
+.imagem {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100%; /* Ocupa a altura total do contêiner */
+}
+
+.imagem img {
+    max-width: 100%; /* A imagem não vai ultrapassar a largura do contêiner */
+    max-height: 100%; /* A imagem não vai ultrapassar a altura do contêiner */
+    width: 15%;
+}
+
+
+#mensagem {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Media queries para ajustar o estilo em telas menores */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Reduzindo o tamanho do título para telas menores */
+    }
+
+    button {
+        padding: 10px 20px; /* Reduzindo o tamanho do botão para telas menores */
+        font-size: 0.8rem; /* Reduzindo o tamanho da fonte do botão para telas menores */
+    }
+}
